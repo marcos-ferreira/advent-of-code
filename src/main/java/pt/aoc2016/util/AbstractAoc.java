@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * Created by Marcos on 03/12/2016.
  */
-public abstract class Processor {
+public abstract class AbstractAoc {
 
     private int lineNumber = 0;
 
