@@ -25,4 +25,5 @@ public class Floor {
     public String getPrevious() {
         return previous;
     }
+
 }

@@ -1,6 +1,6 @@
 package pt.aoc2016.day3;
 
-import pt.aoc2016.util.Processor;
+import pt.util.AbstractAoc;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,35 +8,14 @@ import java.util.regex.Pattern;
 /**
  * Created by Marcos on 03/12/2016.
  */
-public class AdventOfCodeDay3 extends Processor{
+public class AdventOfCodeDay3 extends AbstractAoc {
 
     private static Pattern pattern = Pattern.compile("\\s+([0-999]{1,})\\s+([0-999]{1,})\\s+([0-999]{1,})");
 
     private int count = 0;
-    private int allMatches;
+    private int allMatches = 0;
 
     public static void main(String[] args) throws Exception {
-        Matcher matcher = pattern.matcher("  617    1  399");
-        if(matcher.find()) {
-            String num1 = matcher.group(1);
-            System.out.println("1 " + num1.trim());
-            String num2 = matcher.group(2);
-            System.out.println("2 " +num2.trim());
-            String num3 = matcher.group(3);
-            System.out.println("3 " +num3.trim());
-
-        }
-
-        matcher = pattern.matcher("    7  479  978");
-        if(matcher.find()) {
-            String num1 = matcher.group(1);
-            System.out.println("1 " + num1.trim());
-            String num2 = matcher.group(2);
-            System.out.println("2 " +num2.trim());
-            String num3 = matcher.group(3);
-            System.out.println("3 " +num3.trim());
-
-        }
         AdventOfCodeDay3 adventOfCodeDay3 = new AdventOfCodeDay3();
         adventOfCodeDay3.run();
 

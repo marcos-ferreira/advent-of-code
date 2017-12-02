@@ -1,6 +1,6 @@
 package pt.aoc2016.day7;
 
-import pt.aoc2016.util.AbstractAoc;
+import pt.util.AbstractAoc;
 
 import java.util.ArrayList;
 import java.util.Arrays;

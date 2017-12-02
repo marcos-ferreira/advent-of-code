@@ -1,4 +1,4 @@
-package pt.aoc2016.util;
+package pt.util;
 
 import java.io.*;
 

@@ -12,33 +12,27 @@ import java.util.*;
  */
 public class AdventOfCodeDay11{
 
-    private static final Map<Floor, List<String>> flourMap = new TreeMap<Floor, List<String>>();
+    private static final TreeMap<Floor, List<String>> floorMap = new TreeMap<Floor, List<String>>();
 
     static {
-        flourMap.put(new Floor("F4", null,"F3"), new ArrayList());
-        flourMap.put(new Floor("F3", "F4","F2"), Arrays.asList(new String[]{"COBM","CURM","RUTM","PLUM"}));
-        flourMap.put(new Floor("F2", "F3","F1"), Arrays.asList(new String[]{"COBG","CURG","RUTG","PLUG"}));
-        flourMap.put(new Floor("F1", "F2",null), Arrays.asList(new String[]{"PROMG","PROMM"}));
+        floorMap.put(new Floor("F4", null,"F3"), new ArrayList());
+        floorMap.put(new Floor("F3", "F4","F2"), Arrays.asList(new String[]{"COBM","CURM","RUTM","PLUM"}));
+        floorMap.put(new Floor("F2", "F3","F1"), Arrays.asList(new String[]{"COBG","CURG","RUTG","PLUG"}));
+        floorMap.put(new Floor("F1", "F2",null), Arrays.asList(new String[]{"PROMG","PROMM"}));
     }
 
 
     public static void main(String[] args) {
-        AdventOfCodeDay11 aoc11 = new AdventOfCodeDay11();
 
-        Elevator el = new Elevator();
-
-        aoc11.run(null, el);
     }
 
     public void run(Floor floor, Elevator elevator){
-        for (Map.Entry entry : flourMap.entrySet()) {
-            Floor key = (Floor) entry.getKey();
-        }
+
     }
 
-    public Elevator addToElevator(List<String> flour){
-        for (String flourCompound : flour) {
-            for (String flourCompound2 : flour) {
+    public Elevator addToElevator(List<String> floor){
+        for (String flourCompound : floor) {
+            for (String flourCompound2 : floor) {
                 if(!flourCompound.equals(flourCompound2)){
 
                 }

@@ -6,6 +6,7 @@ package pt.aoc2016.day11;
 public class Elevator {
     private String s1 = null;
     private String s2 = null;
+    private int numberOfFloorStops = 0;
 
     public String getS1(){
         return s1;
@@ -26,4 +27,10 @@ public class Elevator {
     public boolean hasRoom(){
         return s1 == null || s2 == null;
     }
+
+    public void addStop(){
+        numberOfFloorStops++;
+    }
+
+    public int getNumberOfFloorStops(){return numberOfFloorStops;}
 }

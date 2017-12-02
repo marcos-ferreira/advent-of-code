@@ -1,6 +1,6 @@
 package pt.aoc2016.day2;
 
-import pt.aoc2016.util.AbstractAoc;
+import pt.util.AbstractAoc;
 
 import java.awt.*;
 import java.util.*;
