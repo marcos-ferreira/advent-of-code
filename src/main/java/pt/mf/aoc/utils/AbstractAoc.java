@@ -1,10 +1,10 @@
-package pt.util;
+package pt.mf.aoc.utils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
-/**
- * Created by Marcos on 03/12/2016.
- */
 public abstract class AbstractAoc {
 
     private int lineNumber = 0;
