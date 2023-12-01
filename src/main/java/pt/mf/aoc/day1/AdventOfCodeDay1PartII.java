@@ -31,7 +31,7 @@ public class AdventOfCodeDay1PartII extends AbstractAoc {
 
     public void processLine(String line) {
         int number = getNumber(line);
-        System.out.println(number);
+        System.out.println(line + " " + number);
         total += number;
     }
 
@@ -42,9 +42,9 @@ public class AdventOfCodeDay1PartII extends AbstractAoc {
     protected String getFirstDigit(String line) {
         Matcher matcher = DIGIT_REGEX.matcher(line);
         if (matcher.find()) {
-            String number = matcher.group();
-            Integer mappedNumber = numberMapping.get(number);
-            return mappedNumber == null ? number : String.valueOf(mappedNumber);
+            String firstNumber = matcher.group();
+            Integer mappedNumber = numberMapping.get(firstNumber);
+            return mappedNumber == null ? firstNumber : String.valueOf(mappedNumber);
         }
 
         throw new IllegalArgumentException("It was not possible to return first digit in line : " + line);
@@ -66,7 +66,7 @@ public class AdventOfCodeDay1PartII extends AbstractAoc {
 
     @Override
     public String getFileResourceName() {
-        // return "/day-1/input-day-1.txt";
-        return "/day-1/test-part-II.txt";
+        return "/day-1/input-day-1.txt";
+        // return "/day-1/test-part-II.txt";
     }
 }
