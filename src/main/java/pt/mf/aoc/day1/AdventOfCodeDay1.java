@@ -1,6 +1,6 @@
 package pt.mf.aoc.day1;
 
-import pt.mf.aoc.utils.AbstractAoc;
+import pt.mf.aoc.AbstractAoc;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

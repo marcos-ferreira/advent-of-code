@@ -1,6 +1,6 @@
 package pt.mf.aoc.day1;
 
-import pt.mf.aoc.utils.AbstractAoc;
+import pt.mf.aoc.AbstractAoc;
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -9,6 +9,9 @@ import java.util.regex.Pattern;
 public class AdventOfCodeDay1PartII extends AbstractAoc {
 
     private static final Pattern DIGIT_REGEX = Pattern.compile("(1|2|3|4|5|6|7|8|9|one|two|three|four|five|six|seven|eight|nine)",
+            Pattern.CASE_INSENSITIVE);
+
+    private static final Pattern LAST_DIGIT_REGEX = Pattern.compile("(1|2|3|4|5|6|7|8|9|one|two|three|four|five|six|seven|eight|nine)",
             Pattern.CASE_INSENSITIVE);
 
     private static int total = 0;
@@ -26,12 +29,12 @@ public class AdventOfCodeDay1PartII extends AbstractAoc {
 
     public static void main(String[] args) throws Exception {
         new AdventOfCodeDay1PartII().run();
-        System.out.println("total: " + total);
+        System.out.println("total: 54277" + total);
     }
 
     public void processLine(String line) {
         int number = getNumber(line);
-        System.out.println(line + " " + number);
+        System.out.println(number);
         total += number;
     }
 
@@ -51,22 +54,19 @@ public class AdventOfCodeDay1PartII extends AbstractAoc {
     }
 
     protected String getLastDigit(String line) {
-        Matcher matcher = DIGIT_REGEX.matcher(line);
-        String lastNumber = null;
-        while (matcher.find()) {
-            lastNumber = matcher.group();
-        }
-        if (lastNumber != null) {
-            Integer mappedNumber = numberMapping.get(lastNumber);
-            return mappedNumber == null ? lastNumber : String.valueOf(mappedNumber);
+        Matcher matcher = LAST_DIGIT_REGEX.matcher(line);
+        if (matcher.find()) {
+            String firstNumber = matcher.group();
+            Integer mappedNumber = numberMapping.get(firstNumber);
+            return mappedNumber == null ? firstNumber : String.valueOf(mappedNumber);
         }
 
-        throw new IllegalArgumentException("It was not possible to return first digit in line : " + line);
+        throw new IllegalArgumentException("It was not possible to return last digit in line : " + line);
     }
 
     @Override
     public String getFileResourceName() {
-        return "/day-1/input-day-1.txt";
-        // return "/day-1/test-part-II.txt";
+        // return "/day-1/input-day-1.txt";
+        return "/day-1/test-part-II.txt";
     }
 }

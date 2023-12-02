@@ -1,4 +1,4 @@
-package pt.mf.aoc.utils;
+package pt.mf.aoc;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
