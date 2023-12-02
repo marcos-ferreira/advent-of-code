@@ -14,7 +14,6 @@ public class AdventOfCodeDay2PartII extends AdventOfCodeDay2{
 
     public int getPowerSetOfAllGames() {
         int total = 0;
-
         for (Map.Entry<Integer, List<Grab>> entry : gameMap.entrySet()) {
             int minRed = 0;
             int minBlue = 0;
@@ -25,18 +24,9 @@ public class AdventOfCodeDay2PartII extends AdventOfCodeDay2{
                     Cube key = cube.getKey();
                     Integer value = cube.getValue();
                     switch (key) {
-                        case RED :{
-                            minRed = value > minRed ? value : minRed;
-                            break;
-                        }
-                        case BLUE: {
-                            minBlue = value > minBlue ? value : minBlue;
-                            break;
-                        }
-                        case GREEN:{
-                            minGreen = value > minGreen ? value : minGreen;
-                            break;
-                        }
+                        case RED -> minRed = value > minRed ? value : minRed;
+                        case BLUE -> minBlue = value > minBlue ? value : minBlue;
+                        case GREEN -> minGreen = value > minGreen ? value : minGreen;
                     }
                 }
             }
