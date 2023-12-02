@@ -16,7 +16,6 @@ public class AdventOfCodeDay2PartII extends AdventOfCodeDay2{
         int total = 0;
 
         for (Map.Entry<Integer, List<Grab>> entry : gameMap.entrySet()) {
-            Integer gameId = entry.getKey();
             int minRed = 0;
             int minBlue = 0;
             int minGreen = 0;
