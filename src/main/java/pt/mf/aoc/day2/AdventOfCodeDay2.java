@@ -15,7 +15,7 @@ public class AdventOfCodeDay2 extends AbstractAoc {
      * key - game ID
      * value - list of grabs of the given game
      */
-    private static final Map<Integer, List<Grab>> gameMap = new HashMap<>();
+    protected static final Map<Integer, List<Grab>> gameMap = new HashMap<>();
 
     private static final Pattern GAME_REGEX = Pattern.compile("Game (\\d*): (.*)");
     private static final Pattern GRAB_REGEX = Pattern.compile("(\\d*) (blue|red|green)");
@@ -25,12 +25,10 @@ public class AdventOfCodeDay2 extends AbstractAoc {
     private static final int MAX_BLUE_CUBES = 14;
 
     public static void main(String[] args) throws Exception {
-        new AdventOfCodeDay2().run();
+        var aocDay2 = new AdventOfCodeDay2();
+        aocDay2.run();
 
-        // print game map
-        printGameMap();
-
-        System.out.println("total possible games: " + processPossibleGames());
+        System.out.println("total possible games: " + aocDay2.processPossibleGames());
     }
 
     @Override
@@ -78,7 +76,7 @@ public class AdventOfCodeDay2 extends AbstractAoc {
         };
     }
 
-    private static int processPossibleGames() {
+    public int processPossibleGames() {
         int total = 0;
         for (Map.Entry<Integer, List<Grab>> entry : gameMap.entrySet()) {
             Integer gameId = entry.getKey();
@@ -91,13 +89,22 @@ public class AdventOfCodeDay2 extends AbstractAoc {
         return total;
     }
 
-    private static boolean isPossibleGame(Map.Entry<Integer, List<Grab>> entry) {
+    public void printGameMap() {
+        for (Map.Entry<Integer, List<Grab>> entry : gameMap.entrySet()) {
+            System.out.println(entry.getKey());
+            for (Grab grab : entry.getValue()) {
+                System.out.println(grab);
+            }
+        }
+    }
+
+    private boolean isPossibleGame(Map.Entry<Integer, List<Grab>> entry) {
         for (Grab grab : entry.getValue()) {
             Map<Cube, Integer> cubes = grab.getCubes();
             for (Map.Entry<Cube, Integer> cube : cubes.entrySet()) {
                 Cube key = cube.getKey();
                 Integer value = cube.getValue();
-                if(!isValidGrab(key, value)) {
+                if(!isValidCubeCount(key, value)) {
                     return false;
                 }
             }
@@ -106,7 +113,7 @@ public class AdventOfCodeDay2 extends AbstractAoc {
         return true;
     }
 
-    private static boolean isValidGrab(Cube cube, Integer cubeCount) {
+    private boolean isValidCubeCount(Cube cube, Integer cubeCount) {
         return switch (cube) {
             case RED -> cubeCount <= MAX_RED_CUBES;
             case BLUE -> cubeCount <= MAX_BLUE_CUBES;
@@ -114,12 +121,5 @@ public class AdventOfCodeDay2 extends AbstractAoc {
         };
     }
 
-    private static void printGameMap() {
-        for (Map.Entry<Integer, List<Grab>> entry : gameMap.entrySet()) {
-            System.out.println(entry.getKey());
-            for (Grab grab : entry.getValue()) {
-                System.out.println(grab);
-            }
-        }
-    }
+
 }
