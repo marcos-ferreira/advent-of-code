@@ -15,7 +15,7 @@ public class AdventOfCodeDay2 extends AbstractAoc {
      * key - game ID
      * value - list of grabs of the given game
      */
-    protected static final Map<Integer, List<Grab>> gameMap = new HashMap<>();
+    protected final Map<Integer, List<Grab>> gameMap = new HashMap<>();
 
     private static final Pattern GAME_REGEX = Pattern.compile("Game (\\d*): (.*)");
     private static final Pattern GRAB_REGEX = Pattern.compile("(\\d*) (blue|red|green)");
@@ -32,11 +32,6 @@ public class AdventOfCodeDay2 extends AbstractAoc {
     }
 
     @Override
-    public String getFileResourceName() {
-        return "/day-2/input-day-2.txt";
-    }
-
-    @Override
     public void processLine(String line) {
         Matcher matcher = GAME_REGEX.matcher(line);
         if (matcher.find()) {
@@ -50,30 +45,6 @@ public class AdventOfCodeDay2 extends AbstractAoc {
             }
             gameMap.put(gameId, grabList);
         }
-    }
-
-    private Grab getGrab(String grab) {
-        Matcher matcher = GRAB_REGEX.matcher(grab);
-
-        var grabList = new ArrayList<Grab>();
-        var g = new Grab();
-        while (matcher.find()) {
-            var cubeCount = Integer.parseInt(matcher.group(1));
-            var cube = getCube(matcher.group(2));
-
-            g.getCubes().put(cube, cubeCount);
-            grabList.add(g);
-        }
-        return g;
-    }
-
-    private Cube getCube(String cube) {
-        return switch (cube) {
-            case "blue" -> Cube.BLUE;
-            case "red" -> Cube.RED;
-            case "green" -> Cube.GREEN;
-            default -> throw new IllegalArgumentException("Invalid cube color " + cube);
-        };
     }
 
     public int processPossibleGames() {
@@ -96,6 +67,11 @@ public class AdventOfCodeDay2 extends AbstractAoc {
                 System.out.println(grab);
             }
         }
+    }
+
+    @Override
+    public String getFileResourceName() {
+        return "/day-2/input-day-2.txt";
     }
 
     private boolean isPossibleGame(Map.Entry<Integer, List<Grab>> entry) {
@@ -121,5 +97,25 @@ public class AdventOfCodeDay2 extends AbstractAoc {
         };
     }
 
+    private Grab getGrab(String grab) {
+        Matcher matcher = GRAB_REGEX.matcher(grab);
 
+        var g = new Grab();
+        while (matcher.find()) {
+            var cubeCount = Integer.parseInt(matcher.group(1));
+            var cube = getCube(matcher.group(2));
+
+            g.getCubes().put(cube, cubeCount);
+        }
+        return g;
+    }
+
+    private Cube getCube(String cube) {
+        return switch (cube) {
+            case "blue" -> Cube.BLUE;
+            case "red" -> Cube.RED;
+            case "green" -> Cube.GREEN;
+            default -> throw new IllegalArgumentException("Invalid cube color " + cube);
+        };
+    }
 }

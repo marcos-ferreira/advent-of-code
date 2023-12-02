@@ -11,7 +11,8 @@ public class AdventOfCodeDay1PartII extends AbstractAoc {
     private static final Pattern DIGIT_REGEX = Pattern.compile("(1|2|3|4|5|6|7|8|9|one|two|three|four|five|six|seven|eight|nine)",
             Pattern.CASE_INSENSITIVE);
 
-    private static final Pattern LAST_DIGIT_REGEX = Pattern.compile("(1|2|3|4|5|6|7|8|9|one|two|three|four|five|six|seven|eight|nine)",
+    // TODO: needs to be fixed
+    private static final Pattern LAST_DIGIT_REGEX = Pattern.compile("(1|2|3|4|5|6|7|8|9|one|two|three|four|five|six|seven|eight|nine)$",
             Pattern.CASE_INSENSITIVE);
 
     private static int total = 0;
