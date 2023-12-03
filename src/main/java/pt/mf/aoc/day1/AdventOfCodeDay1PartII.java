@@ -8,11 +8,7 @@ import java.util.regex.Pattern;
 
 public class AdventOfCodeDay1PartII extends AbstractAoc {
 
-    private static final Pattern DIGIT_REGEX = Pattern.compile("(1|2|3|4|5|6|7|8|9|one|two|three|four|five|six|seven|eight|nine)",
-            Pattern.CASE_INSENSITIVE);
-
-    // TODO: needs to be fixed
-    private static final Pattern LAST_DIGIT_REGEX = Pattern.compile("(1|2|3|4|5|6|7|8|9|one|two|three|four|five|six|seven|eight|nine)$",
+    private static final Pattern DIGIT_REGEX = Pattern.compile("(?=(1|2|3|4|5|6|7|8|9|one|two|three|four|five|six|seven|eight|nine))",
             Pattern.CASE_INSENSITIVE);
 
     private static int total = 0;
@@ -30,12 +26,11 @@ public class AdventOfCodeDay1PartII extends AbstractAoc {
 
     public static void main(String[] args) throws Exception {
         new AdventOfCodeDay1PartII().run();
-        System.out.println("total: 54277" + total);
+        System.out.println("total: 54277 " + total);
     }
 
     public void processLine(String line) {
         int number = getNumber(line);
-        System.out.println(number);
         total += number;
     }
 
@@ -46,7 +41,7 @@ public class AdventOfCodeDay1PartII extends AbstractAoc {
     protected String getFirstDigit(String line) {
         Matcher matcher = DIGIT_REGEX.matcher(line);
         if (matcher.find()) {
-            String firstNumber = matcher.group();
+            String firstNumber = matcher.group(1);
             Integer mappedNumber = numberMapping.get(firstNumber);
             return mappedNumber == null ? firstNumber : String.valueOf(mappedNumber);
         }
@@ -54,12 +49,16 @@ public class AdventOfCodeDay1PartII extends AbstractAoc {
         throw new IllegalArgumentException("It was not possible to return first digit in line : " + line);
     }
 
-    protected String getLastDigit(String line) {
-        Matcher matcher = LAST_DIGIT_REGEX.matcher(line);
-        if (matcher.find()) {
-            String firstNumber = matcher.group();
-            Integer mappedNumber = numberMapping.get(firstNumber);
-            return mappedNumber == null ? firstNumber : String.valueOf(mappedNumber);
+    protected static String getLastDigit(String line) {
+        Matcher matcher = DIGIT_REGEX.matcher(line);
+        String lastNumber = null;
+        while (matcher.find()) {
+            lastNumber = matcher.group(1);
+        }
+
+        if (lastNumber != null) {
+            Integer mappedNumber = numberMapping.get(lastNumber);
+            return mappedNumber == null ? lastNumber : String.valueOf(mappedNumber);
         }
 
         throw new IllegalArgumentException("It was not possible to return last digit in line : " + line);
@@ -67,7 +66,6 @@ public class AdventOfCodeDay1PartII extends AbstractAoc {
 
     @Override
     public String getFileResourceName() {
-        // return "/day-1/input-day-1.txt";
-        return "/day-1/test-part-II.txt";
+        return "/day-1/input-day-1.txt";
     }
 }

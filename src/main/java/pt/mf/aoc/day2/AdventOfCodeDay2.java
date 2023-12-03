@@ -103,19 +103,12 @@ public class AdventOfCodeDay2 extends AbstractAoc {
         var g = new Grab();
         while (matcher.find()) {
             var cubeCount = Integer.parseInt(matcher.group(1));
-            var cube = getCube(matcher.group(2));
+            var cube = Cube.getCube(matcher.group(2));
 
             g.getCubes().put(cube, cubeCount);
         }
         return g;
     }
 
-    private Cube getCube(String cube) {
-        return switch (cube) {
-            case "blue" -> Cube.BLUE;
-            case "red" -> Cube.RED;
-            case "green" -> Cube.GREEN;
-            default -> throw new IllegalArgumentException("Invalid cube color " + cube);
-        };
-    }
+
 }

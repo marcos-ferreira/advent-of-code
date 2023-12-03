@@ -25,7 +25,6 @@ public class AdventOfCodeDay1 extends AbstractAoc {
     @Override
     public void processLine(String line) {
         int number = getNumber(line);
-        System.out.println(number);
         total += number;
     }
 

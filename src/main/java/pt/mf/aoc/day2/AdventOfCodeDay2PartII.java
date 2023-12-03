@@ -1,5 +1,7 @@
 package pt.mf.aoc.day2;
 
+import lombok.val;
+
 import java.util.List;
 import java.util.Map;
 
@@ -14,19 +16,19 @@ public class AdventOfCodeDay2PartII extends AdventOfCodeDay2{
 
     public int getPowerSetOfAllGames() {
         int total = 0;
-        for (Map.Entry<Integer, List<Grab>> entry : gameMap.entrySet()) {
+        for (var game : gameMap.entrySet()) {
             int minRed = 0;
             int minBlue = 0;
             int minGreen = 0;
-            for (Grab grab : entry.getValue()) {
-                Map<Cube, Integer> cubes = grab.getCubes();
-                for (Map.Entry<Cube, Integer> cube : cubes.entrySet()) {
-                    Cube key = cube.getKey();
-                    Integer value = cube.getValue();
-                    switch (key) {
-                        case RED -> minRed = value > minRed ? value : minRed;
-                        case BLUE -> minBlue = value > minBlue ? value : minBlue;
-                        case GREEN -> minGreen = value > minGreen ? value : minGreen;
+            for (var grab : game.getValue()) {
+                var cubes = grab.getCubes();
+                for (var cube : cubes.entrySet()) {
+                    Cube color = cube.getKey();
+                    Integer cubeCount = cube.getValue();
+                    switch (color) {
+                        case RED -> minRed = cubeCount > minRed ? cubeCount : minRed;
+                        case BLUE -> minBlue = cubeCount > minBlue ? cubeCount : minBlue;
+                        case GREEN -> minGreen = cubeCount > minGreen ? cubeCount : minGreen;
                     }
                 }
             }
