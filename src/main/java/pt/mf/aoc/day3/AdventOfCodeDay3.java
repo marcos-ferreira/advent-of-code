@@ -22,9 +22,13 @@ public class AdventOfCodeDay3 extends AbstractAoc {
     }
 
     public void processMatrix() {
-        this.processInput();
+        this.loadMatrix();
 
         for (int i = 1; i < matrix.length - 1; i++) {
+
+            // AJUST THIS PART
+            // first collect numbers, and their coordenates
+            // second, for each number check for adj symbols
            for (int j = 1; j < matrix[i].length - 1; j++) {
                 if(Character.isDigit(matrix[i][j])) {
                     StringBuilder number = new StringBuilder();
@@ -43,13 +47,6 @@ public class AdventOfCodeDay3 extends AbstractAoc {
         }
     }
 
-    @Data
-    @AllArgsConstructor
-    static class Point {
-        private int x;
-        private int y;
-    }
-
     private boolean searchForAdjSymbol(char c, int x, int y) {
         for (int i = y - 1; i < y + 1; i++) {
             for (int j = x - 1; j < x + 1; j++) {
@@ -63,17 +60,15 @@ public class AdventOfCodeDay3 extends AbstractAoc {
     /**
      * build matrix
      */
-    private void processInput() {
+    private void loadMatrix() {
         initMatrix();
 
         for (int i = 0 ; i < input.size() ; i++) {
-            processInputRow(i, input.get(i));
+            for(int j = 0 ; j < input.get(i).length() ; j++) {
+                String line = input.get(i);
+                matrix[i + 1][j + 1] = line.charAt(j);
+            }
         }
-    }
-
-    private void processInputRow(int y, String line) {
-        for(int x = 0 ; x < line.length() ; x++)
-            matrix[y+1][x+1] = line.charAt(x);
     }
 
     private void initMatrix(){
@@ -105,5 +100,12 @@ public class AdventOfCodeDay3 extends AbstractAoc {
     @Override
     public String getFileResourceName() {
         return "/day-3/input-day-3.txt";
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class Point {
+        private int x;
+        private int y;
     }
 }
