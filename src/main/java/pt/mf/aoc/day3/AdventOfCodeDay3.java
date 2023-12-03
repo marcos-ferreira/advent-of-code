@@ -24,7 +24,6 @@ public class AdventOfCodeDay3 extends AbstractAoc {
     public void processMatrix() {
         this.processInput();
 
-
         for (int i = 1; i < matrix.length - 1; i++) {
            for (int j = 1; j < matrix[i].length - 1; j++) {
                 if(Character.isDigit(matrix[i][j])) {
@@ -37,10 +36,8 @@ public class AdventOfCodeDay3 extends AbstractAoc {
 
                         number.append(matrix[i][x]);
                     }
-
                     int num = Integer.parseInt(number.toString());
                     System.out.println(num);
-                    // searchForAdjSymbol(matrix[i][j], i ,j);
                 }
             }
         }
